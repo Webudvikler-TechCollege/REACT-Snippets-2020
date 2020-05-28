@@ -2,26 +2,20 @@
     border-bottom: solid 1px #000;
     border-top: solid 1px #000;
     background-color: #fff;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-ul > li {
-    display: inline-block;
-    border-right: solid 1px #ccc;    
-}
-
-ul > li > a {
-    display: block;
-    padding: 1.2rem;
-    text-decoration: none;
-    &:hover {
-        background: #000;
-        color: #fff;
+    ul > li {
+        display: inline-block;
+        border-right: solid 1px #ccc;    
     }
+    
+    ul > li > a {
+        display: block;
+        padding: 1.2rem;
+        text-decoration: none;
+        &:hover {
+            background: #000;
+            color: #fff;
+        }
+    }    
 }
+
 

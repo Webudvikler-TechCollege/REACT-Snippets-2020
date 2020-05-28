@@ -1,6 +1,7 @@
 import Home from '../Pages/Home/Home';
 import FetchJoke from '../Pages/FetchJoke/FetchJoke';
 import FetchSongs from '../Pages/FetchSongs/FetchSongs';
+import FetchCategories from '../Pages/FetchCategories/FetchCategories';
 import Login from '../Pages/Login/Login';
 
 const routes = [
@@ -21,6 +22,12 @@ const routes = [
         path: '/fetchsongs',
         exact: true,
         component: FetchSongs
+    },
+    {
+        name: 'Fetch Categories',
+        path: '/fetchcategories',
+        exact: false,
+        component: FetchCategories
     },
     {
         name: 'Login',
