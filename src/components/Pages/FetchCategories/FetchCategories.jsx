@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 
-
-// Li Component
-const Li = props => {
+const Category = props => {
     // Destructure property objektet
     const { path, title } = props;
+
+    function handleClick(id) {
+        console.log('The link was clicked.' + id);
+    }
+
     return (
-      <li>
-        {/* NavLink bruges med fordele til referencer i menuen */}
-        <Link to={'/fetchcategories/' + path}>
+      <li onClick={handleClick(path)}>
             {title}
-        </Link>
       </li>
+    );
+  }
+
+  const Product = props => {
+    // Destructure property objektet
+    const { title } = props;
+    return (
+      <section>
+            {title}
+      </section>
     );
   }
 
@@ -31,13 +40,13 @@ export default function Categories(props) {
             // Fang fejl og vis hvis der er en
             console.log("getCategories -> Error", error);
         }
-    }
+    } 
 
-    async function getProducts(id) {
+    async function getProducts() {
         const fetchHeaders = new Headers();
         fetchHeaders.append("Accept", "application/json");
         try {
-            const request = await fetch("https://api.mediehuset.net/bakeonline/categories/" + id, {headers: fetchHeaders});
+            const request = await fetch("https://api.mediehuset.net/bakeonline/categories/1", {headers: fetchHeaders});
             const response = await request.json();
             setApiProducts(response.products);
         } catch (error) {
@@ -45,7 +54,7 @@ export default function Categories(props) {
             console.log("getProducts -> Error", error);
         }
     }
- 
+    
 
     useEffect(() => {
         getCategory()
@@ -59,7 +68,7 @@ export default function Categories(props) {
                 {
                     apiCategories && apiCategories.length > 0 && apiCategories.map((item) => {
                         return (
-                            <Li key={item.title} path={item.id} title={item.title}></Li>
+                            <Category key={item.title} path={item.id} title={item.title}></Category>
                         )
                     })
                 }
@@ -69,7 +78,7 @@ export default function Categories(props) {
             {
                     apiProducts && apiProducts.length > 0 && apiProducts.map((item) => {
                         return (
-                            <Li key={item.title} path={item.id} title={item.title}></Li>
+                            <Product key={item.title} path={item.id} title={item.title}></Product>
                         )
                     })
                 }

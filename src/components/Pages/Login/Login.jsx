@@ -38,8 +38,7 @@ const Form = props => {
                     let fetchOptions = {
                         method: 'GET',
                         headers: fetchHeaders,
-                        redirect: 'follow',
-                        //mode: 'no-cors'
+                        redirect: 'follow'
                     };                    
 
                     //Fetcher endpoint med requestOptions
