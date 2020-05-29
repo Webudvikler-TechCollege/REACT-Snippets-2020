@@ -2,6 +2,7 @@ import Home from '../Pages/Home/Home';
 import FetchJoke from '../Pages/FetchJoke/FetchJoke';
 import FetchSongs from '../Pages/FetchSongs/FetchSongs';
 import FetchCategories from '../Pages/FetchCategories/FetchCategories';
+import PostComment from '../Pages/PostComment/PostComment';
 import Login from '../Pages/Login/Login';
 
 const routes = [
@@ -29,6 +30,12 @@ const routes = [
         exact: false,
         component: FetchCategories
     },
+    {
+        name: 'Post Comment',
+        path: '/postcomment',
+        exact: false,
+        component: PostComment
+    },    
     {
         name: 'Login',
         path: '/login',

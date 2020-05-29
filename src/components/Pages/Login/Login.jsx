@@ -33,7 +33,6 @@ const Form = props => {
                     const fetchHeaders = new Headers();
                     fetchHeaders.append("Accept", "application/json");
                     fetchHeaders.append("Authorization", "Bearer " + sessionStorage.getItem('token'));
-                    fetchHeaders.append('Access-Control-Allow-Origin', 'http://localhost:3000/');
 
                     let fetchOptions = {
                         method: 'GET',
@@ -42,7 +41,6 @@ const Form = props => {
                     };                    
 
                     //Fetcher endpoint med requestOptions
-                    //  fetch("https://api.mediehuset.net/bakeonline/comments/1", requestOptions)
                     fetch("https://api.mediehuset.net/bakeonline/comments/1", fetchOptions)
                         .then(response => response.json())
                         .then(result => {
@@ -70,7 +68,7 @@ const Form = props => {
                                 required: "Nødvendig",
                             })} 
                         />
-                        <ErrorMessage errors={errors} name={"email"}>
+                        <ErrorMessage errors={errors} name={"username"}>
                             {({message}) => <span>{message}</span>}
                         </ErrorMessage>
                     </div>
@@ -84,7 +82,7 @@ const Form = props => {
                                 required: "Nødvendig"
                             })} 
                         />
-                        <ErrorMessage errors={errors} name={"name"}>
+                        <ErrorMessage errors={errors} name={"password"}>
                             {({message}) => <span>{message}</span>}
                         </ErrorMessage>
                     </div>
