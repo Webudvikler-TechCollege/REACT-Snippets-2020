@@ -3,6 +3,7 @@ import FetchJoke from '../Pages/FetchJoke/FetchJoke';
 import FetchSongs from '../Pages/FetchSongs/FetchSongs';
 import FetchCategories from '../Pages/FetchCategories/FetchCategories';
 import PostComment from '../Pages/PostComment/PostComment';
+import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
 
 const routes = [
@@ -36,6 +37,12 @@ const routes = [
         exact: false,
         component: PostComment
     },    
+    {
+        name: 'Counter',
+        path: '/counter',
+        exact: true,
+        component: Counter
+    },
     {
         name: 'Login',
         path: '/login',

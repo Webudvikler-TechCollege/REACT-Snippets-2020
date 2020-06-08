@@ -6,8 +6,16 @@ export default function Songs(props) {
     async function getSongs() {
         const fetchHeaders = new Headers();
         fetchHeaders.append("Accept", "application/json");
+        fetchHeaders.append("Authorization", "Bearer " + sessionStorage.getItem('token'));
+
+        let requestOptions = {
+            method: 'GET',
+            headers: fetchHeaders,
+            redirect: 'follow'
+        };
+
         try {
-            const request = await fetch("https://api.mediehuset.net/bakeonline/categories", {headers: fetchHeaders});
+            const request = await fetch("https://api.mediehuset.net/bakeonline/users", requestOptions);
             const response = await request.json();
             console.log(response);
             setApiData(response.categories);
@@ -28,7 +36,7 @@ export default function Songs(props) {
             <ul>
                 {
                     apiData && apiData.length > 0 && apiData.map((item, i) => 
-                           <p key={i}>{item.title}</p>
+                           <p key={i}>{item.username}</p>
                     )
                 }
             </ul>

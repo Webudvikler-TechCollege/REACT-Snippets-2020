@@ -1,88 +1,88 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-const Category = props => {
-    // Destructure property objektet
-    const { path, title } = props;
+const apiUrl = 'https://api.mediehuset.net/bakeonline/categories';
 
-    function handleClick(id) {
-        console.log('The link was clicked.' + id);
-    }
-
-    return (
-      <li onClick={handleClick(path)}>
-            {title}
-      </li>
-    );
-  }
-
-  const Product = props => {
-    // Destructure property objektet
-    const { title } = props;
-    return (
-      <section>
-            {title}
-      </section>
-    );
-  }
-
-export default function Categories(props) {
-    const [apiCategories, setApiCategories] = useState(null);
-    const [apiProducts, setApiProducts] = useState(null);
-
-    async function getCategory() {
-        const fetchHeaders = new Headers();
-        fetchHeaders.append("Accept", "application/json");
-        try {
-            const request = await fetch("https://api.mediehuset.net/bakeonline/categories", {headers: fetchHeaders});
-            const response = await request.json();
-            setApiCategories(response.categories);
-        } catch (error) {
-            // Fang fejl og vis hvis der er en
-            console.log("getCategories -> Error", error);
+const apiDataOrg = {
+    "count": 7,
+    "categories": [
+        {
+            "id": "1",
+            "title": "Morgenbrød",
+            "request": {
+                "type": "GET",
+                "url": "https://api.mediehuset.net/bakeonline/categories/1"
+            }
         }
-    } 
+    ]    
+}
 
-    async function getProducts() {
-        const fetchHeaders = new Headers();
-        fetchHeaders.append("Accept", "application/json");
-        try {
-            const request = await fetch("https://api.mediehuset.net/bakeonline/categories/1", {headers: fetchHeaders});
-            const response = await request.json();
-            setApiProducts(response.products);
-        } catch (error) {
-            // Fang fejl og vis hvis der er en
-            console.log("getProducts -> Error", error);
-        }
-    }
-    
-
-    useEffect(() => {
-        getCategory()
-    }, [])
-
-    return (        
-        <div>
-            <h1>Kategorier</h1>
-            <aside>
-            <ul>
-                {
-                    apiCategories && apiCategories.length > 0 && apiCategories.map((item) => {
-                        return (
-                            <Category key={item.title} path={item.id} title={item.title}></Category>
-                        )
-                    })
-                }
-            </ul>
-            </aside>
-            <section>
-            {
-                    apiProducts && apiProducts.length > 0 && apiProducts.map((item) => {
-                        return (
-                            <Product key={item.title} path={item.id} title={item.title}></Product>
-                        )
-                    })
-                }
-            </section>
+const Container = props => {
+    const [categoryData, setCategoryData] = useState(null);
+    return (
+        <div className="container">
+            <div className="left">
+                <CategoryList setCategoryData={setCategoryData} />
+            </div>
+            <div className="right">
+                <ProductList data={categoryData} />
+            </div>
         </div>
     )
 }
+
+const ProductList = props => {
+    const {data} = props;
+    return (
+        <div>
+            {data && data.map(product => (
+                <div key={"product-" + product.id}>
+                    <h6>{product.image.filename}</h6>
+                    <h6>{product.title}</h6>
+                    <p>{product.teaser}</p>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+const CategoryList = props => {
+    const { setCategoryData } = props;
+    const [apiData, setApiData] = useState(null);
+    useEffect(() => {
+        if(!apiData) {
+            fetch(apiUrl)
+                .then((res) => res.json())
+                .then((data) => setApiData(data));
+        }
+    }, [apiData, setApiData]);
+
+    const fetchCategoryData = id => {
+        fetch('https://api.mediehuset.net/bakeonline/categories/' + id)
+            .then((res) => res.json())
+            .then((data) => setCategoryData(data.products.products))
+    }
+
+    return (
+        <div>
+            <ul>
+                {apiData && apiData?.categories.map((category) => {
+                    return <li key={category.id}>
+                                <button onClick={e => fetchCategoryData(category.id)}>
+                                    {category.title}
+                                </button>
+                            </li>
+                })}
+            </ul>
+        </div>                    
+    )
+}
+
+function App() {
+    return (
+        <div className="App">
+            <Container />
+        </div>
+    );
+}
+
+export default App;
