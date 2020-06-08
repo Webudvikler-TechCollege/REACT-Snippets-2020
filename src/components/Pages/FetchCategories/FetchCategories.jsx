@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const apiUrl = 'https://api.mediehuset.net/bakeonline/categories';
 
@@ -39,6 +40,7 @@ const ProductList = props => {
                     <h6>{product.image.filename}</h6>
                     <h6>{product.title}</h6>
                     <p>{product.teaser}</p>
+                    <Link to={"/product?id=" + product.product_id}>Full product</Link>
                 </div>
             ))}
         </div>

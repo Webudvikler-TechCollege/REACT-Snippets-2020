@@ -20,6 +20,5 @@ function App() {
       <Footer></Footer>
     </>
   );
-
 }
 export default App;

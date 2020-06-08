@@ -5,6 +5,7 @@ import FetchCategories from '../Pages/FetchCategories/FetchCategories';
 import PostComment from '../Pages/PostComment/PostComment';
 import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
+import Product from '../Pages/Product/Product';
 
 const routes = [
     {
@@ -12,6 +13,12 @@ const routes = [
         path: '/',
         exact: true,
         component: Home
+    },
+    {
+        name: 'Product page',
+        path: '/product',
+        exact: false,
+        component: Product
     },
     {
         name: 'Fetch Joke',
