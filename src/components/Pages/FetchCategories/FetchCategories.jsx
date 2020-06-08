@@ -36,7 +36,7 @@ const ProductList = props => {
     return (
         <div>
             {data && data.map(product => (
-                <div key={"product-" + product.id}>
+                <div key={"product-" + product.product_id}>
                     <h6>{product.image.filename}</h6>
                     <h6>{product.title}</h6>
                     <p>{product.teaser}</p>
