@@ -8,7 +8,6 @@ import Router from './components/Router/Router';
 import './App.css';
 
 function App() {
-  const [catData, setCatData] = useState([]);
 
   return (
     <>
@@ -21,16 +20,6 @@ function App() {
       <Footer></Footer>
     </>
   );
-
-  const handleCategory = (id) => {
-    let url = `https://api.mediehuset.net/bakeonline/categories/${id}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(result => {
-        setCatData(result);
-      })
-      .catch(error => console.error(error))
-  }
 
 }
 export default App;
