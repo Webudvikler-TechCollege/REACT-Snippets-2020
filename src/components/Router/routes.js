@@ -7,6 +7,15 @@ import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
 import Product from '../Pages/Product/Product';
 
+/**
+ * Array til at styre routes med
+ * @name String Navn som bliver vist i navbar
+ * @path String Sti
+ * @exact Bool Grad af match
+ * @display Bool Angiver om punktet skal vises i navbar
+ * @component Object Komponent som skal afvikles 
+ */
+
 const routes = [
     {
         name: 'Home',
