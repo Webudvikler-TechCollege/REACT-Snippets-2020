@@ -3,20 +3,6 @@ import { Link } from 'react-router-dom';
 
 const apiUrl = 'https://api.mediehuset.net/bakeonline/categories';
 
-const apiDataOrg = {
-    "count": 7,
-    "categories": [
-        {
-            "id": "1",
-            "title": "Morgenbrød",
-            "request": {
-                "type": "GET",
-                "url": "https://api.mediehuset.net/bakeonline/categories/1"
-            }
-        }
-    ]    
-}
-
 const Container = props => {
     const [categoryData, setCategoryData] = useState(null);
     return (

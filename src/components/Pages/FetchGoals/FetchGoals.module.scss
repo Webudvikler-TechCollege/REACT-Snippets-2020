@@ -1,0 +1,11 @@
+.goals {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    div {
+        padding: 0 0.1rem;
+        cursor: pointer;
+        img {
+            width: 100%;
+        }
+    }
+}

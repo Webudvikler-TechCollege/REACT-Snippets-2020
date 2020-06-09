@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 
+const apiUrl = 'https://api.mediehuset.net/sdg/goals';
+
+
 export default function Songs(props) {
     const [apiData, setApiData] = useState(null);
+
+
 
     async function getSongs() {
         const fetchHeaders = new Headers();
@@ -31,7 +36,7 @@ export default function Songs(props) {
 
     return (        
         <div>
-            <h1>Jokes</h1>
+            <h1>De 17 verdensmål</h1>
             <section>
             <ul>
                 {
