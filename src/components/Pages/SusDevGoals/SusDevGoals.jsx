@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Styles from "./FetchGoals.module.scss";
+import { Link } from 'react-router-dom';
+import Styles from "./SusDevGoals.module.scss";
 
 
 // Deklarerer const til apiUrl
@@ -25,7 +26,9 @@ const Goals = props => {
             {goalData && goalData?.items.map(item => {
                 return (
                     <div key={item.id}>
-                        <img alt={item.title} src={item.image.fullpath}></img>
+                        <Link to={"/goal?id=" + item.id}>
+                            <img alt={item.title} src={item.icon}></img>
+                        </Link>
                     </div>
                 )
             })}

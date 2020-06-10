@@ -1,6 +1,7 @@
 import Home from '../Pages/Home/Home';
 import FetchJoke from '../Pages/FetchJoke/FetchJoke';
-import FetchGoals from '../Pages/FetchGoals/FetchGoals';
+import SusDevGoals from '../Pages/SusDevGoals/SusDevGoals';
+import SusDevGoal from '../Pages/SusDevGoals/SusDevGoal';
 import FetchCategories from '../Pages/FetchCategories/FetchCategories';
 import PostComment from '../Pages/PostComment/PostComment';
 import Counter from '../Pages/Counter/Counter';
@@ -25,13 +26,6 @@ const routes = [
         component: Home
     },
     {
-        name: 'Product page',
-        path: '/product',
-        exact: false,
-        display: false,
-        component: Product
-    },
-    {
         name: 'Fetch Joke',
         path: '/fetchjoke',
         exact: true,
@@ -41,9 +35,16 @@ const routes = [
     {
         name: 'Verdensmål',
         path: '/sdg',
-        exact: true,
+        exact: false,
         display: true,
-        component: FetchGoals
+        component: SusDevGoals
+    },
+    {
+        name: 'Verdensmål - detaljer',
+        path: '/goal',
+        exact: false,
+        display: false,
+        component: SusDevGoal
     },
     {
         name: 'Fetch Categories',
@@ -51,6 +52,13 @@ const routes = [
         exact: false,
         display: true,
         component: FetchCategories
+    },
+    {
+        name: 'Product page',
+        path: '/product',
+        exact: false,
+        display: false,
+        component: Product
     },
     {
         name: 'Post Comment',
