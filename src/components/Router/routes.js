@@ -26,6 +26,7 @@ const routes = [
         component: Home
     },
     {
+        // Henter enkelt joke fra API
         name: 'Fetch Joke',
         path: '/fetchjoke',
         exact: true,
