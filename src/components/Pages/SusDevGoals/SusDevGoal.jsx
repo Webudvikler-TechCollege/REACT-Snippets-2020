@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Styles from "./SusDevGoals.module.scss";
 
+// Hent parametre
 const getParams = (url) => {
   return url
     .split("?")[1]
@@ -13,6 +14,9 @@ const getParams = (url) => {
 };
 
 export default function Goal(props) {
+  console.log(props.location.search);
+
+
   const { id } = getParams(props.location.search);
   const [data, setData] = useState(null);
 
@@ -36,7 +40,7 @@ export default function Goal(props) {
           <ul> 
             {data.item.targets && data.item.targets.map(target => {
               return (
-                <li>
+                <li key={target.id}>
                   {target.title}
                   {target.description}
                 </li>
