@@ -33,6 +33,7 @@ const routes = [
         component: FetchJoke
     },
     {
+        // Henter verdensmål ud fra API
         name: 'Verdensmål',
         path: '/sdg',
         exact: false,
@@ -40,6 +41,7 @@ const routes = [
         component: SusDevGoals
     },
     {
+        // Bruges til at vise verdensmål detaljer ud fra et GET param med id
         name: 'Verdensmål - detaljer',
         path: '/goal',
         exact: false,
@@ -47,13 +49,15 @@ const routes = [
         component: SusDevGoal
     },
     {
-        name: 'Fetch Categories',
+        // Henter kategorier og produkter ud fra API
+        name: 'BakeOnline',
         path: '/fetchcategories',
         exact: false,
         display: true,
         component: FetchCategories
     },
     {
+        // Bruges til at vise produkt detaljer ud fra et GET param med id
         name: 'Product page',
         path: '/product',
         exact: false,
