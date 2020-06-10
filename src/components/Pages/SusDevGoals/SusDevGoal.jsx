@@ -31,7 +31,7 @@ export default function Goal(props) {
         <div>
           <h2>{data.item.title}</h2>
           <h3>{data.item.byline}</h3>
-          <p><img src={data.item.image}></img></p>
+          <p><img alt="{data.item.title}" src={data.item.image}></img></p>
           <p className={Styles.description}>{data.item.description}</p>
           <ul> 
             {data.item.targets && data.item.targets.map(target => {
