@@ -3,15 +3,22 @@ import Styles from "./SusDevGoals.module.scss";
 
 // Hent parametre
 const getParams = (url) => {
-  return url.substr(url.lastIndexOf('/')+1)
+  return url
+    .split("?")[1]
+    .split("&")
+    .reduce((obj, keyvals) => {
+      const [key, val] = keyvals.split("=");
+      obj[key] = val;
+      return obj;
+    }, {});
 };
 
 export default function Goal(props) {
+  console.log(props.location.search);
 
-  const id = getParams(props.location.pathname);
+
+  const { id } = getParams(props.location.search);
   const [data, setData] = useState(null);
-
-  console.log(id);
 
   useEffect(() => {
     console.log(data);

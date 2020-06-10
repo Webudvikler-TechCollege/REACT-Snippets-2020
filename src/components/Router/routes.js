@@ -44,7 +44,7 @@ const routes = [
     {
         // Bruges til at vise verdensmål detaljer ud fra et GET param med id
         name: 'Verdensmål - detaljer',
-        path: '/goal',
+        path: '/goal/:id',
         exact: false,
         display: false,
         component: SusDevGoal
