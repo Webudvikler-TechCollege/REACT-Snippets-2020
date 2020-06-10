@@ -2,11 +2,11 @@ import Home from '../Pages/Home/Home';
 import FetchJoke from '../Pages/FetchJoke/FetchJoke';
 import SusDevGoals from '../Pages/SusDevGoals/SusDevGoals';
 import SusDevGoal from '../Pages/SusDevGoals/SusDevGoal';
-import FetchCategories from '../Pages/FetchCategories/FetchCategories';
 import PostComment from '../Pages/PostComment/PostComment';
 import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
-import Product from '../Pages/Product/Product';
+import Categories from '../Pages/CatAndProds/Categories';
+import Product from '../Pages/CatAndProds/Product';
 
 /**
  * Array til at styre routes med
@@ -51,11 +51,11 @@ const routes = [
     },
     {
         // Henter kategorier og produkter ud fra API
-        name: 'BakeOnline',
-        path: '/fetchcategories',
+        name: 'Kategori & Produkt',
+        path: '/catandprods',
         exact: false,
         display: true,
-        component: FetchCategories
+        component: Categories
     },
     {
         // Bruges til at vise produkt detaljer ud fra et GET param med id

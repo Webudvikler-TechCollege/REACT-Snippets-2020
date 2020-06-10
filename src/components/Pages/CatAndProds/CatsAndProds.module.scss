@@ -1,0 +1,15 @@
+.container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.product img {
+    max-width: 200px;
+}
+
+ul {
+    text-align: left;
+    li {
+        cursor: pointer;
+    }
+}
