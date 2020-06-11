@@ -26,7 +26,6 @@ const Form = props => {
           .then(result => {
               if(result.access_token) {
                   console.log("Clean:  " + result.access_token);
-                  console.log("Stringify:  " + JSON.stringify(result.access_token));
 
                 sessionStorage.setItem('token', result.access_token);
                 sessionStorage.setItem('user_id', result.user_id);

@@ -7,10 +7,10 @@ const Container = props => {
     const [categoryData, setCategoryData] = useState(null);
     return (
         <div className={Styles.container}>
-            <div>
+            <div className={Styles.categories}>
                 <CategoryList setCategoryData={setCategoryData} />
             </div>
-            <div>
+            <div className={Styles.products}>
                 <ProductList data={categoryData} />
             </div>
         </div>
@@ -62,10 +62,17 @@ const ProductList = props => {
         <div>
             {data && data.map(product => (
                 <div className={Styles.product} key={"product-" + product.product_id}>
-                    <img src={product.image.fullpath} alt={product.title}></img>
-                    <h3>{product.title}</h3>
-                    <p>{product.teaser}</p>
-                    <Link to={"/product?id=" + product.product_id}>Full product</Link>
+                    <div>
+                        <Link to={"/product?id=" + product.product_id}>
+                            <img src={product.image.fullpath} alt={product.title}></img>
+                        </Link>        
+                    </div>
+                    <div>
+                        <Link to={"/product?id=" + product.product_id}>
+                            <h4>{product.title}</h4>
+                        </Link>
+                        <p>{product.teaser}</p>
+                    </div>
                 </div>
             ))}
         </div>

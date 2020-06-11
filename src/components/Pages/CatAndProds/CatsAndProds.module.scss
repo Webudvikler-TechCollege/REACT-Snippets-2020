@@ -3,8 +3,20 @@
     grid-template-columns: 20% 80%;
 }
 
-.product img {
-    max-width: 200px;
+.product {
+    display: grid;
+    grid-template-columns: 220px 60%;
+    overflow-y: auto;
+    margin-bottom: 30px;
+    img {
+        max-width: 200px;
+    }
+    h4, a {
+        margin-top: 0px;
+        color: #000;
+        text-decoration: none;
+        outline: none;
+    }
 }
 
 ul {
