@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 // Henter form hook fra NPM React-hook-form
 import { useForm, ErrorMessage } from "react-hook-form";
-import { render } from "@testing-library/react";
 
 const Login = (props) => {
   // Deklarerer hook til login form
