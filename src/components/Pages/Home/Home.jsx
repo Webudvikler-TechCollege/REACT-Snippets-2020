@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Home(props) {
+// Click Hook Example
+const ClickHook = props => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        document.title = `Du har klikket ${count} gange`;
+    })
+
     return (
         <div>
-            <h1>Welcome</h1>
+            <h1>Click Hook</h1>
             <section>
-                <p>Her er vores REACT forside.</p>
+                <button onClick={() => setCount(count+1)}>Click me</button>
+                <p>Du har klikket {count} gange.</p>
             </section>
         </div>
     )
 }
+
+const Container = props => {
+    return (
+        <ClickHook />
+    )
+}
+
+export default Container;

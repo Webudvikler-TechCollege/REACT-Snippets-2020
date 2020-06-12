@@ -57,7 +57,7 @@ const CategoryList = props => {
 
 // Deklarerer product component
 const ProductList = props => {
-    const {data} = props;
+    const { data } = props;
     return (
         <div>
             {data && data.map(product => (
