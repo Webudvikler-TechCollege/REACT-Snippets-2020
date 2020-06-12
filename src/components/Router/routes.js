@@ -5,7 +5,6 @@ import SusDevGoal from '../Pages/SusDevGoals/SusDevGoal';
 import PostComment from '../Pages/PostComment/PostComment';
 import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
-import LoginComponent from '../Pages/Login/LoginComponent';
 import Categories from '../Pages/CatAndProds/Categories';
 import Product from '../Pages/CatAndProds/Product';
 
@@ -86,13 +85,6 @@ const routes = [
         exact: true,
         display: true,
         component: Login
-    },
-    {
-        name: 'Login Ny',
-        path: '/newlogin',
-        exact: true,
-        display: true,
-        component: LoginComponent
     }];
 
 export default routes;
