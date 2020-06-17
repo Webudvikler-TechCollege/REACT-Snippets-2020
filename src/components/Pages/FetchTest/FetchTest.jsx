@@ -14,16 +14,28 @@ const Items = props => {
             // Fetcher API
             fetch(apiUrl)
                 .then((res) => res.json())
-                .then((data) => setApiData(data.stages.items[1].events.items))
+                .then((data) => setApiData(data))
         }
     }, [apiData, setApiData]);
 
     return (
         <div>
-            {console.log(apiData)}
-            {Array.isArray(apiData) && apiData.map(item => (
-                <div key={item.id}>{item.title}</div>
-            ))}
+            {apiData && 
+                apiData.stages && 
+                apiData.stages.items && 
+                apiData.stages.items.map(stage => (
+                    stage.events.items.map(({id, title, local_time, stage_name }) => {
+                        return (
+                            <div key={id}>
+                                <h3>{title}</h3>
+                                <h6>{local_time}</h6>
+                                <h6>{stage_name}</h6>
+                                <hr />
+                            </div>
+                        )
+                    })
+                ))
+            }
         </div>
     )
 }
