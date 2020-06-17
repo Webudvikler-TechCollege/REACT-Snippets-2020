@@ -2,20 +2,44 @@
     border-bottom: solid 1px #000;
     border-top: solid 1px #000;
     background-color: #fff;
+    ul {
+        margin: 0px;
+        padding: 0px;
+    }
     ul > li {
         display: inline-block;
         border-right: solid 1px #ccc;    
-    }
-    
-    ul > li > a {
-        display: block;
-        padding: 1.2rem;
-        text-decoration: none;
-        &:hover {
+        &:hover, &:hover > a  {
             background: #000;
             color: #fff;
         }
-    }    
+    }
+    ul > li a {
+        display: block;
+        padding: 0.5rem;
+        color: #000;
+        text-decoration: none;
+    }
+
+    ul > li > ul {
+        display: none;
+        position: absolute;
+        border: solid 1px #000;
+        li {
+            width: 150px;
+            background: #fff;
+            display: block;
+        }
+    }
+
+    ul > li > ul li a {
+        font-size: 0.9rem;        
+
+    }
+
+    ul > li:hover > ul {
+        display: block;
+    }
 }
 
 

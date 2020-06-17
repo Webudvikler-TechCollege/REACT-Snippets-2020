@@ -13,6 +13,18 @@ export default function Router(props) {
                     component={route.component}
                 />
             ))}
+            {routes.map(route => (
+                route.subnav ? (
+                    route.subnav?.map(subroute => (                    
+                        <Route
+                            key={subroute.path}
+                            path={subroute.path}
+                            exact={subroute.exact}
+                            component={subroute.component}
+                        />
+                    ))
+                ) : null
+            ))}
             {/* Route til 404 Not found */}
             <Route render={() => <h1>Siden findes ikke</h1>} />
         </Switch>

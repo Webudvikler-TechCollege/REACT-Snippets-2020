@@ -7,6 +7,7 @@ import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
 import Categories from '../Pages/CatAndProds/Categories';
 import Product from '../Pages/CatAndProds/Product';
+import Artist from '../Pages/Artist/Artist';
 
 /**
  * Array til at styre routes med
@@ -23,15 +24,42 @@ const routes = [
         path: '/',
         exact: true,
         display: true,
-        component: Home
+        component: Home,
+        subnav: [
+            {
+                name: 'Test',
+                path: '/test',
+                exact: true,
+                display: true,
+                component: Home
+            }
+        ]
     },
     {
         // Henter enkelt joke fra API
-        name: 'Fetch Joke',
-        path: '/fetchjoke',
+        name: 'Fetches',
+        path: '/fetches',
         exact: true,
         display: true,
-        component: FetchJoke
+        subnav: [
+            {
+                // Henter enkelt joke fra API
+                name: 'Fetch a joke',
+                path: '/fetchajoke',
+                component: FetchJoke
+            },
+            {
+                // Henter kategorier og produkter ud fra API
+                name: 'Kategori & Produkt',
+                path: '/catandprods',
+                component: Categories
+            },        
+            {
+                name: 'Artist',
+                path: '/artist',
+                component: Artist
+            }        
+        ]
     },
     {
         // Henter verdensmål ud fra API
@@ -48,14 +76,6 @@ const routes = [
         exact: false,
         display: false,
         component: SusDevGoal
-    },
-    {
-        // Henter kategorier og produkter ud fra API
-        name: 'Kategori & Produkt',
-        path: '/catandprods',
-        exact: false,
-        display: true,
-        component: Categories
     },
     {
         // Bruges til at vise produkt detaljer ud fra et GET param med id
