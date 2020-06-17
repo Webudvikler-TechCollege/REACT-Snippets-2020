@@ -8,6 +8,7 @@ import Login from '../Pages/Login/Login';
 import Categories from '../Pages/CatAndProds/Categories';
 import Product from '../Pages/CatAndProds/Product';
 import Artist from '../Pages/Artist/Artist';
+import FetchTest from '../Pages/FetchTest/FetchTest';
 
 /**
  * Array til at styre routes med
@@ -58,6 +59,11 @@ const routes = [
                 name: 'Artist',
                 path: '/artist',
                 component: Artist
+            },        
+            {
+                name: 'Fetch Tester',
+                path: '/fetchtest',
+                component: FetchTest
             }        
         ]
     },

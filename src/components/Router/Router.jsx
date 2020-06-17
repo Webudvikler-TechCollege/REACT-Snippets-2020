@@ -5,28 +5,30 @@ import routes from './routes';
 export default function Router(props) {
     return (
         <Switch>
-            {routes.map(route => (
-                <Route
-                    key={route.path}
-                    path={route.path}
-                    exact={route.exact}
-                    component={route.component}
-                />
-            ))}
-            {routes.map(route => (
-                route.subnav ? (
-                    route.subnav?.map(subroute => (                    
-                        <Route
-                            key={subroute.path}
-                            path={subroute.path}
-                            exact={subroute.exact}
-                            component={subroute.component}
-                        />
-                    ))
-                ) : null
-            ))}
-            {/* Route til 404 Not found */}
+            {routes.reduce((reducedRoutes, route) => {
+                reducedRoutes.push(
+                    <Route
+                        key={route.path}
+                        path={route.path}
+                        exact={route.exact}
+                        component={route.component}
+                    />
+                )
+                if(Array.isArray(route.subnav)) {
+                    route.subnav.forEach(subroute => {
+                        reducedRoutes.push(
+                            <Route
+                                key={subroute.path}
+                                path={subroute.path}
+                                exact={subroute.exact}
+                                component={subroute.component}
+                            />
+                        )
+                    })
+                }
+                return reducedRoutes;            
+            }, [])}
             <Route render={() => <h1>Siden findes ikke</h1>} />
         </Switch>
-    );
+    )
 }
