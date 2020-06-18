@@ -1,0 +1,19 @@
+$red: "#fff";
+
+.events {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+div {
+    padding: 0 0.1rem;
+    cursor: pointer;
+}
+
+.red {
+    background-color: $red;
+}
+
+.description {
+    white-space: pre-line;
+}

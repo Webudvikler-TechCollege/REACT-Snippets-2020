@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Styles from "./FetchTest.module.scss";
 
 // Deklarerer const til apiUrl
 const apiUrl = 'https://api.mediehuset.net/mediesuset/';
@@ -19,14 +20,14 @@ const Items = props => {
     }, [apiData, setApiData]);
 
     return (
-        <div>
+        <div className={Styles.events}>
             {apiData && 
                 apiData.stages && 
                 apiData.stages.items && 
                 apiData.stages.items.map(stage => (
                     stage.events.items.map(({id, title, local_time, stage_name }) => {
                         return (
-                            <div key={id}>
+                            <div key={id} className={Styles.red}>
                                 <h3>{title}</h3>
                                 <h6>{local_time}</h6>
                                 <h6>{stage_name}</h6>

@@ -7,7 +7,7 @@ import Counter from '../Pages/Counter/Counter';
 import Login from '../Pages/Login/Login';
 import Categories from '../Pages/CatAndProds/Categories';
 import Product from '../Pages/CatAndProds/Product';
-import Artist from '../Pages/Artist/Artist';
+import LineUp from '../Pages/API/LineUp/LineUp.jsx';
 import FetchTest from '../Pages/FetchTest/FetchTest';
 
 /**
@@ -56,9 +56,9 @@ const routes = [
                 component: Categories
             },        
             {
-                name: 'Artist',
-                path: '/artist',
-                component: Artist
+                name: 'LineUp',
+                path: '/lineup',
+                component: LineUp
             },        
             {
                 name: 'Fetch Tester',
