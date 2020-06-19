@@ -1,4 +1,8 @@
-$red: "#fff";
+$red: #993333;
+$blue: #336699;
+$green: #669933;
+$purple: #993366;
+
 
 .events {
     display: grid;
@@ -6,8 +10,14 @@ $red: "#fff";
 }
 
 div {
-    padding: 0 0.1rem;
+    margin: 0.2rem;
     cursor: pointer;
+    height: 250px;
+    background-position: center;
+    background-origin: content-box;
+    img {
+        width: 100%;
+    }
 }
 
 .red {
@@ -16,4 +26,11 @@ div {
 
 .description {
     white-space: pre-line;
+}
+
+.stage1 {
+    background-color: $red;
+    position: absolute;
+    bottom: 0px;  
+    height: 50px;
 }
