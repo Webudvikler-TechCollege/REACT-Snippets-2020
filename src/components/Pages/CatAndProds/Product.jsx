@@ -1,6 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import useFetch from "use-http";
 
+// Hent parametre
 const getParams = (url) => {
+  // Grimt hack til at give en default hvis url'en er tomt.
+  // BRUG IKKE DEN HER!!
+  if (!url) {
+    return { id: 2 };
+  }
   return url
     .split("?")[1]
     .split("&")
@@ -13,25 +20,15 @@ const getParams = (url) => {
 
 export default function Product(props) {
   const { id } = getParams(props.location.search);
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    if (!data && id) {
-      fetch("https://api.mediehuset.net/bakeonline/products/" + id)
-        .then((res) => res.json())
-        .then((apidata) => setData(apidata));
-    }
-  }, [data, setData, id]);
+  const { data } = useFetch("/bakeonline/products/" + id, {suspense: true}, []);
 
   return (
     <div>
-      {data ? (
+      {data && (
         <div>
           <h2>{data.title}</h2>
           <p>{data.teaser}</p>
         </div>
-      ) : (
-        <div>Loading..</div>
       )}
     </div>
   );

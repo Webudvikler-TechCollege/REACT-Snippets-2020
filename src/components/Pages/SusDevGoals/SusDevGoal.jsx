@@ -20,10 +20,7 @@ const getParams = (url) => {
 };
 
 export default function Goal(props) {
-  console.log("Goal -> props", props);
-
   const { id } = getParams(props.location.search);
-  console.log("Goal -> id", id);
 
   const { data } = useFetch(
     // 1. Parameter = url til api

@@ -1,17 +1,44 @@
 import React, { useState, createContext, useMemo, useCallback } from "react";
 import { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
+import { useEffect } from "react";
 
-const AuthContext = createContext();
-// const AuthContext = createContext({
-//   loggedIn: false,
-//   user: null,
-//   login: () => {},
-//   logout: () => {},
-// });
+const AuthContext = createContext({
+  loggedIn: false,
+  user: null,
+  login: () => {},
+  logout: () => {},
+});
 
 export function AuthProvider(props) {
   const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Forsøger at tjekke sessionStorage
+    // efter brugeroplysninger
+    // DETTE ER ET DUMT HACK/FIX OG BØR IKKE BRUGES
+    // Lad vær at få brugeroplysninger fra sessionstorage på
+    // denne måde. Mange ting kan gå galt som: udløbet token,
+    // gammelt data, utroværdig kilde osv.
+    // Prøv følgende i consollen i browseren:
+    // 1. Skriv: sessionStorage.setItem("user_id", "1337")
+    // 2. Skriv: sessionStorage.setItem("token", "123")
+    // 3. Tryk på opdater knappen
+    // 4. ??
+    // 5. profit. Kommet ind på priviligerede sider uden login 
+
+    if(!user) {
+      const access_token = sessionStorage.getItem("token");
+      const user_id = sessionStorage.getItem("user_id");
+      if(access_token && user_id) {
+        setUser({
+          access_token,
+          user_id,
+        })
+      }
+    }
+  }, [user, setUser])
+
   const login = useCallback((username, password) => {
     // Deklarerer headers
     const headers = new Headers();
