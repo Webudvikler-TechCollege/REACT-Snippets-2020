@@ -1,68 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import Styles from './LineUp.module.scss';
+import React, { useState } from "react";
+import Styles from "./LineUp.module.scss";
+import useFetch from "use-http";
+import { useCallback } from "react";
 
 export default function LineUp(props) {
-    const [eventData, setEventData] = useState(false);
+  const [eventData, setEventData] = useState(false);
 
-    return (
-        <section>
-            <div>
-                <StageList setEventData={setEventData}></StageList>
-            </div>
-            <div className={Styles.events}>
-                <EventList data={eventData}></EventList>
-            </div>
-        </section>
-    )
+  return (
+    <section>
+      <div>
+        <StageList eventData={eventData} setEventData={setEventData} />
+      </div>
+      <div className={Styles.events}>
+        <EventList data={eventData} />
+      </div>
+    </section>
+  );
 }
 
-const StageList = props => {
-    const [stageData, setStageData] = useState(false);
-    const { setEventData } = props;
+const StageList = (props) => {
+  const { setEventData } = props;
+  const { data } = useFetch("/mediesuset/", []);
 
-    const fetchStageData = id => {
-        const stage = stageData.find(function(item, index) {
-            if(item.id === id) {
-                return item;
-            } else {
-                return null;
-            }
-        });        
-        setEventData(stage.events.items)
-    }
-
-    useEffect(() => {
-        if(!stageData) {
-            fetch('https://api.mediehuset.net/mediesuset/')
-                .then(response => response.json())
-                .then(data => setStageData(data.stages.items))
+  const fetchStageData = useCallback(
+    (id) => {
+      const stage = data.stages.items.find(function (item) {
+        if (item.id === id) {
+          return item;
+        } else {
+          return null;
         }
-    }, [stageData, setStageData])
+      });
+      const eventList = stage?.events?.items;
+      if(eventList) {
+        setEventData(eventList);
+      }
+    },
+    [data, setEventData]
+  );
 
-    return (
-        <div>
-            {stageData && stageData.map(({name, id}) => {
-                return (
-                <button key={id} onClick={e => fetchStageData(id)}>{name}</button>
-                )
-            })}
-        </div>
-    )
-}
+  return (
+    <div>
+      {data &&
+        data?.stages?.items?.map(({ name, id }) => {
+          return (
+            <button key={id} onClick={(e) => fetchStageData(id)}>
+              {name}
+            </button>
+          );
+        })}
+    </div>
+  );
+};
 
-const EventList = props => {
-    const { data } = props;
-    return (
-        <>
-            {data && data.map(({title, image, localtime, id}) => {
-                return (
-                    <div key={id} >
-                        <h4>{title}</h4>
-                        <h5>{localtime}</h5>
-                        <h5>{image}</h5>
-                    </div>
-                )
-            })}
-        </>
-    )
-}
+const EventList = (props) => {
+  const { data } = props;
+  return (
+    <>
+      {data &&
+        data?.map(({ title, image, localtime, id }) => {
+          return (
+            <div key={id}>
+              <h4>{title}</h4>
+              <h5>{localtime}</h5>
+              <img style={{maxWidth:"20vw"}} src={image} alt={title}/>
+            </div>
+          );
+        })}
+    </>
+  );
+};

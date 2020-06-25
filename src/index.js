@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import Contexts from './components/Contexts'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Contexts>
       <App />
-    </BrowserRouter>
+    </Contexts>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,29 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import Styles from "./SusDevGoals.module.scss";
+import useFetch from 'use-http';
 
-
-// Deklarerer const til apiUrl
-const apiUrl = 'https://api.mediehuset.net/sdg/goals';
 
 // Deklarerer Mål component
 const Goals = props => {
-    // Deklarerer hook
-    const [goalData, setGoalData] = useState(null);
-
-    // Kalder useEffect til at lave 1. kald
-    useEffect(() => {
-        if(!goalData) {
-            // Fetcher API
-            fetch(apiUrl)
-                .then((res) => res.json())
-                .then((data) => setGoalData(data))
-        }
-    }, [goalData, setGoalData]);
+    const {data} = useFetch('/sdg/goals', [])
 
     return (
         <div className={Styles.goals}>
-            {goalData && goalData?.items.map(item => {
+            {data && data?.items.map(item => {
                 return (
                     <div key={item.id}>
                         <Link to={"/goal?id=" + item.id}>
@@ -36,7 +23,7 @@ const Goals = props => {
     )
 }
 
-function App() {
+function GaolsContainer() {
     return (
         <div>
             <Goals />
@@ -44,4 +31,4 @@ function App() {
     );
 }
 
-export default App;
+export default GaolsContainer;
