@@ -2,6 +2,8 @@ import React, { useState, createContext, useMemo, useCallback } from "react";
 import { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useEffect } from "react";
+import JwtDecode from "jwt-decode";
+
 
 const AuthContext = createContext({
   loggedIn: false,
@@ -64,8 +66,8 @@ export function AuthProvider(props) {
         console.log("login -> result", result)
         // Hvis bruger findes
         if (result.access_token) {
-          setUser(result);
-
+          const decodedTokenInfo = JwtDecode(result.access_token);
+          setUser({...result, tokenInfo: decodedTokenInfo});
           // Smid token og user id ned i session storage
           // Så kan vi tilgå dem derfra indtil at browser vinduet lukkes
           sessionStorage.setItem("token", result.access_token);

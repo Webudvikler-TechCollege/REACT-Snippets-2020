@@ -1,45 +1,88 @@
+.activeNavLink {
+    display: inline-block;
+    border-right: solid 1px #ccc;    
+    background: #000;
+    // * {
+    //     color: #fff !important;
+        
+    // }
+    // color: #fff;
+    color: #fff;
+
+}
+
+
 .sitenav {
     border-bottom: solid 1px #000;
     border-top: solid 1px #000;
     background-color: #fff;
+    color: black;
     ul {
         margin: 0px;
         padding: 0px;
-    }
-    ul > li {
-        display: inline-block;
-        border-right: solid 1px #ccc;    
-        &:hover, &:hover > a  {
-            background: #000;
-            color: #fff;
-        }
-    }
-    ul > li a {
-        display: block;
-        padding: 0.5rem;
-        color: #000;
-        text-decoration: none;
-    }
-
-    ul > li > ul {
-        display: none;
-        position: absolute;
-        border: solid 1px #000;
         li {
-            width: 150px;
-            background: #fff;
-            display: block;
+            display: inline-block;
+            border-right: solid 1px #ccc;    
+            // &:hover > a  {
+            //     background: #000;
+            //     color: #fff;
+            // }
+            a {
+                display: block;
+                padding: 0.5rem;
+                // color: black;
+                color: inherit;
+                // color: #000;
+                text-decoration: none;
+                &:hover {
+                    
+                    background: #000;
+                    color: #fff;
+                }
+            }
+            ul {
+                display: none;
+                position: absolute;
+                border: solid 1px #000;
+                li {
+                    width: 150px;
+                    background: #fff;
+                    display: block;
+                    a {
+                        font-size: 0.9rem;        
+                        // color: black;
+                    }
+                }
+            }
+            &:hover > ul {
+                display: block;
+            }
         }
+        
     }
-
-    ul > li > ul li a {
-        font-size: 0.9rem;        
-
+    .activeNavLink {
+        color: white;
     }
+    // ul > li > ul {
+    //     display: none;
+    //     position: absolute;
+    //     border: solid 1px #000;
+    //     li {
+    //         width: 150px;
+    //         background: #fff;
+    //         display: block;
+    //     }
+    // }
 
-    ul > li:hover > ul {
-        display: block;
-    }
+    // ul > li > ul li a {
+    //     font-size: 0.9rem;        
+    //     // color: black;
+    // }
+
+    // ul > li:hover > ul {
+    //     display: block;
+    // }
 }
+
 
 

@@ -1,32 +1,18 @@
 import React from "react";
 import Styles from "./SusDevGoals.module.scss";
 import useFetch from "use-http";
-
-// Hent parametre
-const getParams = (url) => {
-  // Grimt hack til at give en default hvis url'en er tomt.
-  // BRUG IKKE DEN HER!!
-  if (!url) {
-    return { id: 2 };
-  }
-  return url
-    .split("?")[1]
-    .split("&")
-    .reduce((obj, keyvals) => {
-      const [key, val] = keyvals.split("=");
-      obj[key] = val;
-      return obj;
-    }, {});
-};
+import useURLSearchParams from "../../../hooks/useURLSearchParams";
 
 export default function Goal(props) {
-  const { id } = getParams(props.location.search);
+  const { id } = useURLSearchParams("id");
 
   const { data } = useFetch(
     // 1. Parameter = url til api
-    "/sdg/goals/" + id,
+    "/sdg/goals/" + (id || 2),
     // 2. Parameter = config objekt. Aktivere loader
-    { suspense: true },
+    {
+      suspense: true,
+    },
     // 3. Parameter = tom array så den fetcher on-mount
     []
   );

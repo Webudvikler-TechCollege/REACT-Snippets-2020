@@ -25,6 +25,8 @@ const Login = (props) => {
             id="username"
             ref={register({
               required: "Nødvendig",
+              minLength: { message: "too short", value: 2 },
+              maxLength: { message: "too long", value: 30 },
             })}
           />
           <ErrorMessage errors={errors} name={"username"}>
@@ -39,6 +41,8 @@ const Login = (props) => {
             id="password"
             ref={register({
               required: "Nødvendig",
+              minLength: { message: "too short", value: 2 },
+              maxLength: { message: "too long", value: 30 },
             })}
           />
           <ErrorMessage errors={errors} name={"password"}>
@@ -46,6 +50,16 @@ const Login = (props) => {
           </ErrorMessage>
         </div>
         <button type="submit">Send</button>
+        <button
+          onClick={() => {
+            // crude hack to force a login session
+            window.sessionStorage.setItem("user_id", 1337);
+            window.sessionStorage.setItem("token", 1337);
+            window.location.reload();
+          }}
+        >
+          force login!
+        </button>
       </form>
     );
   } else {
