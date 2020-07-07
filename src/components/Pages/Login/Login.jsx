@@ -66,6 +66,8 @@ const Login = (props) => {
     return (
       <div>
         <button onClick={logout}>Logout</button>
+        {/* {JSON.stringify(user, null, 2)} */}
+        <pre>{JSON.stringify(user, null, 2)}</pre>
       </div>
     );
   }

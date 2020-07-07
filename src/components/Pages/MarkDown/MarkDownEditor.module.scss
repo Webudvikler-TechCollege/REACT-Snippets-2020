@@ -1,0 +1,26 @@
+.container {
+  // background: #333;
+  margin: 0 auto;
+  max-width: 100vmin;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.editorContainer {
+  // background: rgba(0, 0, 0, 0.753);
+  margin: 1rem;
+}
+
+.toolsContainer {
+  margin: .5rem;
+}
+
+.changeBtn {
+  background: #333;
+  color: white;
+  // outline: none;
+  border: none;
+  padding: 0.5rem 1rem ;
+}

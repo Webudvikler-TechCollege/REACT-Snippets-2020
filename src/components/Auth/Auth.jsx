@@ -4,7 +4,6 @@ import { Route, Redirect } from "react-router-dom";
 import { useEffect } from "react";
 import JwtDecode from "jwt-decode";
 
-
 const AuthContext = createContext({
   loggedIn: false,
   user: null,
@@ -27,58 +26,60 @@ export function AuthProvider(props) {
     // 2. Skriv: sessionStorage.setItem("token", "123")
     // 3. Tryk på opdater knappen
     // 4. ??
-    // 5. profit. Kommet ind på priviligerede sider uden login 
+    // 5. profit. Kommet ind på priviligerede sider uden login
 
-    if(!user) {
-      const access_token = sessionStorage.getItem("token");
-      const user_id = sessionStorage.getItem("user_id");
-      if(access_token && user_id) {
-        setUser({
-          access_token,
-          user_id,
-        })
+    if (!user) {
+      const recoveredUser = sessionStorage.getItem("user");
+      if (typeof recoveredUser === "string") {
+        setUser(JSON.parse(recoveredUser));
       }
     }
-  }, [user, setUser])
+  }, [user, setUser]);
 
-  const login = useCallback((username, password) => {
-    // Deklarerer headers
-    const headers = new Headers();
-    headers.append("Content-Type", "application/x-www-form-urlencoded");
+  const login = useCallback(
+    (username, password) => {
+      // Deklarerer headers
+      const headers = new Headers();
+      headers.append("Content-Type", "application/x-www-form-urlencoded");
 
-    // Deklarerer user data (username + password)
-    const urlencodedBody = new URLSearchParams();
-    urlencodedBody.append("username", username);
-    urlencodedBody.append("password", password);
+      // Deklarerer user data (username + password)
+      const urlencodedBody = new URLSearchParams();
+      urlencodedBody.append("username", username);
+      urlencodedBody.append("password", password);
 
-    // Deklarerer request options
-    let requestOptions = {
-      method: "POST",
-      headers: headers,
-      body: urlencodedBody,
-      redirect: "follow",
-    };
+      // Deklarerer request options
+      let requestOptions = {
+        method: "POST",
+        headers: headers,
+        body: urlencodedBody,
+        redirect: "follow",
+      };
 
-    // Kalder login i API - returnerer array med token hvis true
-    fetch("https://api.mediehuset.net/token", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("login -> result", result)
-        // Hvis bruger findes
-        if (result.access_token) {
-          const decodedTokenInfo = JwtDecode(result.access_token);
-          setUser({...result, tokenInfo: decodedTokenInfo});
-          // Smid token og user id ned i session storage
-          // Så kan vi tilgå dem derfra indtil at browser vinduet lukkes
-          sessionStorage.setItem("token", result.access_token);
-          sessionStorage.setItem("user_id", result.user_id);
-        }
-        return result
-      }).catch(err => {
-        console.error(err);
-        return err
-      });
-  }, [setUser]);
+      // Kalder login i API - returnerer array med token hvis true
+      fetch("https://api.mediehuset.net/token", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          // console.log("login -> result", result);
+          // Hvis bruger findes
+          if (result.access_token) {
+            const decodedTokenInfo = JwtDecode(result.access_token);
+            const newUser = { ...result, tokenInfo: decodedTokenInfo };
+            setUser(newUser);
+            // Smid token og user id ned i session storage
+            // Så kan vi tilgå dem derfra indtil at browser vinduet lukkes
+            // sessionStorage.setItem("token", result.access_token);
+            // sessionStorage.setItem("user_id", result.user_id);
+            sessionStorage.setItem("user", JSON.stringify(newUser));
+          }
+          return result;
+        })
+        .catch((err) => {
+          console.error(err);
+          return err;
+        });
+    },
+    [setUser]
+  );
 
   const logout = useCallback(() => {
     setUser(null);
@@ -107,6 +108,6 @@ export default function useAuth() {
 
 export function AuthRoute(props) {
   const { loggedIn } = useAuth();
-  if(!loggedIn) return <Redirect to="/login" />
-  return <Route {...props} />
+  if (!loggedIn) return <Redirect to="/login" />;
+  return <Route {...props} />;
 }

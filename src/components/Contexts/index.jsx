@@ -4,6 +4,11 @@ import CombineContexts from "./CombineContext";
 import { AuthProvider } from "../Auth/Auth";
 import NetworkProvider from "./NetworkProvider";
 import ErrorBoundary from "./ErrorBoundary";
+// export * from "react-router-dom";
+export * from "./CombineContext";
+export * from "../Auth/Auth";
+export * from "./NetworkProvider";
+export * from "./ErrorBoundary";
 
 // Rækkefølgen som disse bliver kaldt på, 
 // bestemmer hvordan de bliver nested

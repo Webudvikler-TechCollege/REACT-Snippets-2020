@@ -11,6 +11,7 @@ import React from "react";
 // import Product from '../Pages/CatAndProds/Product';
 // import LineUp from '../Pages/API/LineUp/LineUp.jsx';
 // import FetchTest from '../Pages/FetchTest/FetchTest';
+// import Markdown from '../Pages/MarkDown/MarkDown.Jsx';
 const Home = React.lazy(() => import("../Pages/Home/Home"));
 const FetchJoke = React.lazy(() => import("../Pages/FetchJoke/FetchJoke"));
 const SusDevGoals = React.lazy(() =>
@@ -26,6 +27,8 @@ const Categories = React.lazy(() => import("../Pages/CatAndProds/Categories"));
 const Product = React.lazy(() => import("../Pages/CatAndProds/Product"));
 const LineUp = React.lazy(() => import("../Pages/API/LineUp/LineUp.jsx"));
 const FetchTest = React.lazy(() => import("../Pages/FetchTest/FetchTest"));
+const MarkdownEditor = React.lazy(() => import("../Pages/MarkDown/MarkDownEditor.jsx"));
+const MarkdownViewer = React.lazy(() => import("../Pages/MarkDown/MarkDownViewer.jsx"));
 
 /**
  * Array til at styre routes med
@@ -120,8 +123,30 @@ const routes = [
     name: "Counter",
     path: "/counter",
     exact: true,
-    display: true,
     component: Counter,
+  },
+  {
+    name: "MarkDown",
+    path: "/markdown",
+    display: true,
+    exact: true,
+    component: MarkdownEditor,
+    subnav: [
+      {
+        name: "MarkDown Editor",
+        path: "/markdowneditor",
+        display: true,
+        exact: true,
+        component: MarkdownEditor,
+      },
+      {
+        name: "MarkDown Viewer",
+        path: "/markdownviewer",
+        display: true,
+        exact: true,
+        component: MarkdownViewer,
+      },
+    ]
   },
   {
     name: "Login",
@@ -131,5 +156,14 @@ const routes = [
     component: Login,
   },
 ];
+
+export const routePaths = routes.reduce((paths, route) => {
+  paths.add(route.path)
+  if(Array.isArray(route.subnav)) {
+    route.subnav.forEach(subroute => paths.add(route.path + subroute.path))
+  }
+  return paths;
+}, new Set())
+
 
 export default routes;
