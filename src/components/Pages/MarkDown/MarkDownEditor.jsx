@@ -1,6 +1,4 @@
-import React from "react";
-// import MDX from "@mdx-js/runtime";
-// import ErrorBoundary from "../../Contexts/ErrorBoundary";
+import React, { useEffect, useState } from "react";
 import Editor from "rich-markdown-editor";
 import { debounce } from "lodash";
 import styles from "./MarkDownEditor.module.scss";
@@ -11,19 +9,22 @@ import md from "./md.js";
 
 
 const MDContainer = () => {
-  const [readOnly, setReadOnly] = React.useState(true);
-  const [content, setContent] = React.useState(null);
+  const [readOnly, setReadOnly] = useState(true);
+  const [content, setContent] = useState(null);
   const history = useHistory();
-  // const location = useLocation();
-  // location.
+
   const handleChange = debounce((value) => {
     const text = value();
-    // console.log(text);
     localStorage.setItem("saved", text);
     setContent(text);
   }, 250);
 
-  React.useEffect(() => {
+  const resetToDefault = () => {
+    localStorage.removeItem("saved");
+    setContent(null)
+  }
+
+  useEffect(() => {
     if (content === null) {
       const saved = localStorage.getItem("saved");
       if (saved) {
@@ -36,13 +37,18 @@ const MDContainer = () => {
 
   return (
     <section className={styles.container}>
-      {/* <MDEditor setContent={setContent} content={content} /> */}
       <div className={styles.toolsContainer}>
         <button
           className={styles.changeBtn}
           onClick={() => setReadOnly((ro) => !ro)}
         >
           {readOnly ? "Ændre" : "Gem"}
+        </button>{" "}
+        <button
+          className={styles.changeBtn}
+          onClick={resetToDefault}
+        >
+          clear
         </button>
       </div>
       <div className={styles.editorContainer}>

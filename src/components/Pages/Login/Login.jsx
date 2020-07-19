@@ -11,7 +11,7 @@ const Login = (props) => {
   console.log("Login -> user", user);
 
   const onSubmit = handleSubmit((values) => {
-    login(values.username, values.password);
+    login(values.username.trim(), values.password.trim());
   });
 
   if (!loggedIn) {
@@ -62,15 +62,14 @@ const Login = (props) => {
         </button>
       </form>
     );
-  } else {
-    return (
-      <div>
-        <button onClick={logout}>Logout</button>
-        {/* {JSON.stringify(user, null, 2)} */}
-        <pre>{JSON.stringify(user, null, 2)}</pre>
-      </div>
-    );
   }
+  return (
+    <div>
+      <button onClick={logout}>Logout</button>
+      {/* {JSON.stringify(user, null, 2)} */}
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+    </div>
+  );
 };
 
 export default Login;

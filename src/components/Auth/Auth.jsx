@@ -30,7 +30,7 @@ export function AuthProvider(props) {
 
     if (!user) {
       const recoveredUser = sessionStorage.getItem("user");
-      if (typeof recoveredUser === "string") {
+      if (typeof recoveredUser === "string" && recoveredUser.length > 0) {
         setUser(JSON.parse(recoveredUser));
       }
     }

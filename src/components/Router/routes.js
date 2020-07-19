@@ -164,6 +164,10 @@ export const routePaths = routes.reduce((paths, route) => {
   }
   return paths;
 }, new Set())
+// ^ Bruger et Set her fordi Set's kun kan indeholde unikke værdier
+// dvs. at den samme værdi kun kan opstå 1 gang i et Set.
+// På den måde undgår vi automatisk at komme til at indsætte
+// den samme route 2 gange.
 
 
 export default routes;
