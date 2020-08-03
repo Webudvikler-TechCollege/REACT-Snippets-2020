@@ -20,7 +20,7 @@ const Login = (props) => {
 
   if(!loggedIn) {
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="username">Brugernavn:</label>
           <input
