@@ -1,14 +1,15 @@
-import Home from '../Pages/Home/Home';
-import FetchJoke from '../Pages/FetchJoke/FetchJoke';
-import SusDevGoals from '../Pages/SusDevGoals/SusDevGoals';
-import SusDevGoal from '../Pages/SusDevGoals/SusDevGoal';
-import PostComment from '../Pages/PostComment/PostComment';
-import Counter from '../Pages/Counter/Counter';
-import Login from '../Pages/Login/Login';
-import Categories from '../Pages/CatAndProds/Categories';
-import Product from '../Pages/CatAndProds/Product';
-import LineUp from '../Pages/API/LineUp/LineUp.jsx';
-import FetchTest from '../Pages/FetchTest/FetchTest';
+import React from 'react';
+const Home = React.lazy(() => import('../Pages/Home/Home'));
+const FetchJoke = React.lazy(() => import('../Pages/FetchJoke/FetchJoke'));
+const SusDevGoals = React.lazy(() => import('../Pages/SusDevGoals/SusDevGoals'));
+const SusDevGoal = React.lazy(() => import('../Pages/SusDevGoals/SusDevGoal'));
+const PostComment = React.lazy(() => import('../Pages/PostComment/PostComment'));
+const Counter = React.lazy(() => import('../Pages/Counter/Counter'));
+const Categories = React.lazy(() => import('../Pages/CatAndProds/Categories'));
+const Product = React.lazy(() => import('../Pages/CatAndProds/Product'));
+const LineUp = React.lazy(() => import('../Pages/API/LineUp/LineUp'));
+const FetchTest = React.lazy(() => import('../Pages/FetchTest/FetchTest'));
+const Login = React.lazy(() => import('../Pages/Login/Login'));
 
 /**
  * Array til at styre routes med
@@ -16,6 +17,7 @@ import FetchTest from '../Pages/FetchTest/FetchTest';
  * @path String Sti
  * @exact Bool Grad af match
  * @display Bool Angiver om punktet skal vises i navbar
+ * @privileged Bool Angiver om routen kræver login 
  * @component Object Komponent som skal afvikles 
  */
 
@@ -42,6 +44,7 @@ const routes = [
         path: '/fetches',
         exact: true,
         display: true,
+        privileged: true,
         subnav: [
             {
                 // Henter enkelt joke fra API

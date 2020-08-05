@@ -1,65 +1,36 @@
 // Henter react
-import React, { useState } from "react";
+import React from "react";
 // Henter form hook fra NPM React-hook-form
 import { useForm, ErrorMessage } from "react-hook-form";
+import useAuth from "../../Auth/Auth";
 
 const Login = (props) => {
   // Deklarerer hook til login form
   const { handleSubmit, register, errors } = useForm();
+  const { login, logout, user, loggedIn } = useAuth();
+  console.log("Login -> user", user);
 
+  
   // Deklarerer hook til login
-  const [isLoggedIn, setLogin] = useState(false);
+  //const [isLoggedIn, setLogin] = useState(false);
 
-  const onSubmit = (values) => {
-    // Deklarerer headers
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+  const onSubmit = handleSubmit((values) => {
+    login(values.username.trim(), values.password.trim());
+  });
 
-    // Deklarerer user data (username + password)
-    let urlencoded = new URLSearchParams();
-    urlencoded.append("username", values.username);
-    urlencoded.append("password", values.password);
-
-    // Deklarerer request options
-    let requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: "follow",
-    };
-
-    // Kalder login i API - returnerer array med token hvis true
-    fetch("https://api.mediehuset.net/token", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        // Hvis bruger findes
-        if (result.access_token) {
-          setLogin(true);
-
-          // Smid token og user id ned i session storage
-          // Så kan vi tilgå dem derfra indtil at browser vinduet lukkes
-          sessionStorage.setItem("token", result.access_token);
-          sessionStorage.setItem("user_id", result.user_id);
-        }
-      });
-  };
-
-  const Logout = () => {
-    sessionStorage.clear();
-    setLogin(false);
-  };
-
-  if(!isLoggedIn) {
+  if(!loggedIn) {
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="username">Brugernavn:</label>
           <input
             type="text"
             name="username"
-            id="username"
+            id="username" 
             ref={register({
               required: "Nødvendig",
+              minLength: { message: "too short", value: 2 },
+              maxLength: { message: "too long", value: 30 },              
             })}
           />
           <ErrorMessage errors={errors} name={"username"}>
@@ -74,6 +45,8 @@ const Login = (props) => {
             id="password"
             ref={register({
               required: "Nødvendig",
+              minLength: { message: "too short", value: 2 },
+              maxLength: { message: "too long", value: 30 },              
             })}
           />
           <ErrorMessage errors={errors} name={"password"}>
@@ -82,14 +55,14 @@ const Login = (props) => {
         </div>
         <button type="submit">Send</button>
       </form>
-    );
-  } else {
-    return (
-      <div>
-        <button onClick={() => Logout()}>Logout</button>
-      </div>
-    );
+    )
   }
-};
+  return (
+    <div>
+      <button onClick={logout}>Logout</button>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+    </div>
+  )
+}
 
 export default Login;
