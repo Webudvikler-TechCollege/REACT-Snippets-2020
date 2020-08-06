@@ -44,7 +44,6 @@ const routes = [
         path: '/fetches',
         exact: true,
         display: true,
-        privileged: true,
         subnav: [
             {
                 // Henter enkelt joke fra API
@@ -61,6 +60,7 @@ const routes = [
             {
                 name: 'LineUp',
                 path: '/lineup',
+                privileged: true,
                 component: LineUp
             },        
             {
@@ -99,6 +99,7 @@ const routes = [
         path: '/postcomment',
         exact: false,
         display: true,
+        privileged: true,
         component: PostComment
     },    
     {
