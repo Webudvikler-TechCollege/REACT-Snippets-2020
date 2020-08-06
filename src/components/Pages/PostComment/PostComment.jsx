@@ -7,7 +7,7 @@ const Form = props => {
     const { handleSubmit, register, errors } = useForm();
 
     const onSubmit = values => {
-        console.log(values);
+        //console.log(values);
         let postHeaders = new Headers();
         postHeaders.append("Content-Type", "application/x-www-form-urlencoded");
         postHeaders.append("Accept", "application/json");

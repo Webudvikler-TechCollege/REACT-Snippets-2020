@@ -117,4 +117,9 @@ const routes = [
         component: Login
     }];
 
+if(sessionStorage.getItem("token")) {
+    console.log('logged in');        
+}
+
+
 export default routes;
