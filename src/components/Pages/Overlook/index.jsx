@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Styles from './overlook.module.scss';
-//import Header from '../../images/iceland.jpg'
-//import Search from '../../Search/Search'
 
 export default function Destinations(props) {
 
