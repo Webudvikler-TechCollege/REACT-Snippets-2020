@@ -6,7 +6,7 @@ const SusDevGoal = React.lazy(() => import('../Pages/SusDevGoals/SusDevGoal'));
 const PostComment = React.lazy(() => import('../Pages/PostComment/PostComment'));
 const Counter = React.lazy(() => import('../Pages/Counter/Counter'));
 const Categories = React.lazy(() => import('../Pages/CatAndProds/Categories'));
-const Overlook = React.lazy(() => import('../Pages/Overlook/index'));
+const Overlook = React.lazy(() => import('../Pages/Overlook/Overlook'));
 const Product = React.lazy(() => import('../Pages/CatAndProds/Product'));
 const LineUp = React.lazy(() => import('../Pages/API/LineUp/LineUp'));
 const FetchTest = React.lazy(() => import('../Pages/FetchTest/FetchTest'));
