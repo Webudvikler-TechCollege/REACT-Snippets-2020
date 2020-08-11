@@ -6,6 +6,7 @@ const SusDevGoal = React.lazy(() => import('../Pages/SusDevGoals/SusDevGoal'));
 const PostComment = React.lazy(() => import('../Pages/PostComment/PostComment'));
 const Counter = React.lazy(() => import('../Pages/Counter/Counter'));
 const Categories = React.lazy(() => import('../Pages/CatAndProds/Categories'));
+const Overlook = React.lazy(() => import('../Pages/Overlook/index'));
 const Product = React.lazy(() => import('../Pages/CatAndProds/Product'));
 const LineUp = React.lazy(() => import('../Pages/API/LineUp/LineUp'));
 const FetchTest = React.lazy(() => import('../Pages/FetchTest/FetchTest'));
@@ -44,7 +45,6 @@ const routes = [
         path: '/fetches',
         exact: true,
         display: true,
-        privileged: true,
         subnav: [
             {
                 // Henter enkelt joke fra API
@@ -61,6 +61,7 @@ const routes = [
             {
                 name: 'LineUp',
                 path: '/lineup',
+                privileged: true,
                 component: LineUp
             },        
             {
@@ -88,6 +89,13 @@ const routes = [
     },
     {
         // Bruges til at vise produkt detaljer ud fra et GET param med id
+        name: 'Overlook',
+        path: '/overlook',
+        exact: false,
+        display: true,
+        component: Overlook
+    },    {
+        // Bruges til at vise produkt detaljer ud fra et GET param med id
         name: 'Product page',
         path: '/product',
         exact: false,
@@ -99,6 +107,7 @@ const routes = [
         path: '/postcomment',
         exact: false,
         display: true,
+        privileged: true,
         component: PostComment
     },    
     {
@@ -115,5 +124,10 @@ const routes = [
         display: true,
         component: Login
     }];
+
+if(sessionStorage.getItem("token")) {
+    console.log('logged in');        
+}
+
 
 export default routes;

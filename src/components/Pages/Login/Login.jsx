@@ -8,7 +8,7 @@ const Login = (props) => {
   // Deklarerer hook til login form
   const { handleSubmit, register, errors } = useForm();
   const { login, logout, user, loggedIn } = useAuth();
-  console.log("Login -> user", user);
+  //console.log("Login -> user", user);
 
   
   // Deklarerer hook til login
@@ -60,7 +60,7 @@ const Login = (props) => {
   return (
     <div>
       <button onClick={logout}>Logout</button>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+      <pre></pre>
     </div>
   )
 }

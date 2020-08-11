@@ -7,7 +7,7 @@ const Form = props => {
     const { handleSubmit, register, errors } = useForm();
 
     const onSubmit = values => {
-        console.log(values);
+        //console.log(values);
         let postHeaders = new Headers();
         postHeaders.append("Content-Type", "application/x-www-form-urlencoded");
         postHeaders.append("Accept", "application/json");
@@ -37,7 +37,6 @@ const Form = props => {
     return (
         <div>
             <h3>Indsend kommentar</h3>
-            <h5>Du skal være logget ind!</h5>
             <section>
                 <form onSubmit={handleSubmit(onSubmit)}>
                 <input type="hidden" name="user_id" value="1" ref={register({  })} />                    

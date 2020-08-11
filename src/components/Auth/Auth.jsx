@@ -48,7 +48,7 @@ export function AuthProvider(props) {
         fetch("https://api.mediehuset.net/token", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-            console.log("login -> result", result)
+            //console.log("login -> result", result)
             // Hvis bruger findes
             if (result.access_token) {
             const decodedTokenInfo = JwtDecode(result.access_token);
