@@ -1,7 +1,8 @@
 // Henter react
 import React from 'react';
 // Henter form hook fra NPM React-hook-form
-import { useForm, ErrorMessage } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message"
 
 const Form = props => {
     const { handleSubmit, register, errors } = useForm();
