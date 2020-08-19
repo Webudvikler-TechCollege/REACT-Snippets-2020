@@ -41,14 +41,13 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-
     if (this.state.hasError) {
       // You can render any custom fallback UI
       if (this.props.errorComponent) {
         const ErrorComponent = this.props.errorComponent;
         return (
           <ErrorComponent
-            {...{
+            errorInfos={{
               ...this.props,
               ...this.state,
               // error: this.state.error,

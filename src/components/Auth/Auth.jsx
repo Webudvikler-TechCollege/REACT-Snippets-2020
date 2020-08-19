@@ -1,7 +1,12 @@
-import React, { useState, createContext, useMemo, useCallback } from "react";
-import { useContext } from "react";
+import React, {
+  useState,
+  createContext,
+  useMemo,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useEffect } from "react";
 import JwtDecode from "jwt-decode";
 
 const AuthContext = createContext({
