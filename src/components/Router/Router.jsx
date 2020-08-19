@@ -52,7 +52,7 @@ export default function Router(props) {
         }
         if (Array.isArray(route.subnav)) {
           route.subnav.forEach((subroute) => {
-            if (subroute.priviliged) {
+            if (subroute.priviliged || route.priviliged) {
               reducedRoutes.push(
                 <AuthRoute
                   key={subroute.path}
