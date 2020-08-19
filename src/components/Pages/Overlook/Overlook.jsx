@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Styles from './Overlook.module.scss';
+
 
 export default function Destinations(props) {
 

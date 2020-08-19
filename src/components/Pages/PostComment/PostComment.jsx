@@ -30,7 +30,7 @@ const Form = props => {
         
         fetch("https://api.mediehuset.net/bakeonline/comments", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => console.dir(result))
             .catch(error => console.log('error', error));
     }
 

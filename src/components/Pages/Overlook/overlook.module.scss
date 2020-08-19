@@ -1,27 +1,18 @@
-.container {
+.room_wrapper {
     display: grid;
     grid-template-columns: 20% 80%;
+    border: solid 1px #000;
 }
 
-.product {
-    display: grid;
-    grid-template-columns: 220px 60%;
+li {
+    list-style-type: none;
     overflow-y: auto;
-    margin-bottom: 30px;
-    img {
-        max-width: 200px;
-    }
-    h4, a {
-        margin-top: 0px;
-        color: #000;
-        text-decoration: none;
-        outline: none;
-    }
+    margin-bottom: 15px; 
 }
 
-ul {
-    text-align: left;
-    li {
-        cursor: pointer;
-    }
+.room_list img {
+    max-width: 100px;
+    width: 100%;
+    float: left;
+    margin-right: 15px;
 }

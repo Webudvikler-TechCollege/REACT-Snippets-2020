@@ -7,6 +7,8 @@ const PostComment = React.lazy(() => import('../Pages/PostComment/PostComment'))
 const Counter = React.lazy(() => import('../Pages/Counter/Counter'));
 const Categories = React.lazy(() => import('../Pages/CatAndProds/Categories'));
 const Overlook = React.lazy(() => import('../Pages/Overlook/Overlook'));
+const Fix = React.lazy(() => import('../Pages/Overlook/Fix'));
+const Rooms = React.lazy(() => import('../Pages/Overlook/Rooms'));
 const Product = React.lazy(() => import('../Pages/CatAndProds/Product'));
 const LineUp = React.lazy(() => import('../Pages/API/LineUp/LineUp'));
 const FetchTest = React.lazy(() => import('../Pages/FetchTest/FetchTest'));
@@ -93,8 +95,23 @@ const routes = [
         path: '/overlook',
         exact: false,
         display: true,
-        component: Overlook
-    },    {
+        component: Overlook,
+        subnav: [
+            {
+                // Henter enkelt joke fra API
+                name: 'Rooms',
+                path: '/rooms',
+                component: Rooms
+            },
+            {
+                // Henter enkelt joke fra API
+                name: 'Zennia',
+                path: '/zennia',
+                component: Fix
+            }
+        ]
+    },    
+    {
         // Bruges til at vise produkt detaljer ud fra et GET param med id
         name: 'Product page',
         path: '/product',
