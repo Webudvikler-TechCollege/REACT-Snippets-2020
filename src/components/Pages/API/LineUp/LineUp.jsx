@@ -42,7 +42,7 @@ const StageList = props => {
         <div>
             {stageData && stageData.map(({name, id}) => {
                 return (
-                <button key={id} onClick={e => fetchStageData(id)}>{name}</button>
+                    <button key={id} onClick={e => fetchStageData(id)}>{name}</button>
                 )
             })}
         </div>
