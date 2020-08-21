@@ -11,6 +11,7 @@ const Fix = React.lazy(() => import('../Pages/Overlook/Fix'));
 const Rooms = React.lazy(() => import('../Pages/Overlook/Rooms'));
 const Product = React.lazy(() => import('../Pages/CatAndProds/Product'));
 const LineUp = React.lazy(() => import('../Pages/API/LineUp/LineUp'));
+const Ratings = React.lazy(() => import('../Pages/API/Ratings/Ratings'));
 const FetchTest = React.lazy(() => import('../Pages/FetchTest/FetchTest'));
 const Login = React.lazy(() => import('../Pages/Login/Login'));
 
@@ -69,7 +70,12 @@ const routes = [
             {
                 name: 'Fetch Tester',
                 path: '/fetchtest',
-                component: FetchTest
+                component: FetchTest       
+            },        
+            {
+                name: 'Ratings',
+                path: '/ratings',
+                component: Ratings
             }        
         ]
     },
