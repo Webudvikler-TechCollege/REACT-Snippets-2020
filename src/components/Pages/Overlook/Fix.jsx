@@ -1,41 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-const getParams = (url) => {
-  return url
-    .split("?")[1]
-    .split("&")
-    .reduce((obj, keyvals) => {
-      const [key, val] = keyvals.split("=");
-      obj[key] = val;
-      return obj;
-    }, {});
-};
+export default function SearchInput(props) {
+    const [searchText, setSearchText] = useState("Search...");
+    const [apiData, setApiData] = useState(null);
 
-export default function City(props) {
-  const { id } = getParams(props.location.search);
-  const [data, setData] = useState(null);
+    async function getSearch() {
+        const fetchHeaders = new Headers();
+        fetchHeaders.append('Accept', 'application/json');
 
-  useEffect(() => {
-    if (!data && id) {
-      fetch("https://api.mediehuset.net/overlook/hotels/by_city/" + id)
-        .then((res) => res.json())
-        .then((apidata) => setData(apidata));
+        try {
+            const request = await fetch('https://api.mediehuset.net/overlook/search/' + searchText, { headers: fetchHeaders });
+            const response = await request.json();
+            console.log(response);
+            setApiData(response)
+        } catch (error) {
+            console.log('getNews -> Error', error);
+        }
     }
-  }, [data, setData, id]);
+    useEffect(() => {
+        getSearch()
+    }, [])
 
-  return (
-    <div>
-      {data ? (
-        <div className="City">
-            {data.items && data.items.map(hotel => {
-                return (
-                    <li key={hotel.id}>{hotel.title}</li>
-                )
-            })}            
-        </div>
-      ) : (
-        <div>Loading..</div>
-      )}
-    </div>
-  );
+    return(
+      <div className="searcharea">
+	      <input type="text" className="searchfield" onFocus={() => setSearchText("")} onChange={(e) => setSearchText(e.target.value)} value={searchText} ></input>
+          <button onClick={()=>getSearch()} className="searchbutton">Search</button>
+            {
+              apiData && apiData.items.map(searchitem => (
+                  <div key={searchitem.id}>
+                      <p><b>{searchitem.title}</b><br />
+                        {searchitem.teaser}</p>
+                  </div>
+              ))
+            }
+      </div>
+);
 }
