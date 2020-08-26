@@ -11,21 +11,24 @@ export default function SearchInput(props) {
         try {
             const request = await fetch('https://api.mediehuset.net/overlook/search/' + searchText, { headers: fetchHeaders });
             const response = await request.json();
-            console.log(response);
             setApiData(response)
         } catch (error) {
             console.log('getNews -> Error', error);
         }
     }
-    useEffect(() => {
-        getSearch()
-    }, [])
 
     return(
       <div className="searcharea">
 	      <input type="text" className="searchfield" onFocus={() => setSearchText("")} onChange={(e) => setSearchText(e.target.value)} value={searchText} ></input>
           <button onClick={()=>getSearch()} className="searchbutton">Search</button>
-            {
+          {apiData &&        
+              <p>Fandt <b>
+              {
+                  apiData && apiData.num_items
+              }
+              </b> resultater</p>                  
+          }
+            {                          
               apiData && apiData.items.map(searchitem => (
                   <div key={searchitem.id}>
                       <p><b>{searchitem.title}</b><br />
